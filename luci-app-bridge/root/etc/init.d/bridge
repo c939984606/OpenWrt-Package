@@ -16,7 +16,7 @@ run_bridge()
 	if [ "$enabled" = "1" ]; then
 
 	#防止重复配置
-	a=$(uci get network.bridge.ifname | sed 's/ /\n/g' |wc -l)
+	a=$(uci get network.bridge.device | sed 's/ /\n/g' |wc -l)
 	b=$(uci get network.bridge.ipaddr)
 	c=$(uci get network.bridge.netmask)
 	d=$(uci get network.bridge.gateway)
@@ -53,7 +53,7 @@ run_bridge()
 
 	#写入network网络接口
 	uci set network.loopback=interface
-	uci set network.loopback.ifname=lo
+	uci set network.loopback.device=lo
 	uci set network.loopback.proto=static
 	uci set network.loopback.ipaddr=127.0.0.1
 	uci set network.loopback.netmask=255.0.0.0
@@ -61,7 +61,7 @@ run_bridge()
 	uci set network.globals.ula_prefix=$ipv6
 	uci set network.bridge=interface
 	uci set network.bridge.type='bridge'
-	uci set network.bridge.ifname="$eth"
+	uci set network.bridge.device="$eth"
 	uci set network.bridge.proto='static'
 	uci set network.bridge.ipaddr=$ipaddr
 	uci set network.bridge.netmask=$netmask

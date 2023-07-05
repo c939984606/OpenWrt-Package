@@ -14,6 +14,6 @@ define Package/luci-app-bridge/conffiles
 /etc/bridge/firewall
 endef
 
-include ../../luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
